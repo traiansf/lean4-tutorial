@@ -16,7 +16,7 @@
 | `Except ε α` | `Either ε a` | Error handling |
 | `Except.ok x` / `Except.error e` | `Right x` / `Left e` | |
 | `IO.println` | `putStrLn` | |
-| `IO.getLine` | `getLine` | |
+| `(← IO.getStdin).getLine` | `getLine` | Read a line from stdin |
 | `return x` | `return x` / `pure x` | Lift value into monad |
 
 ## Next

@@ -6,3 +6,6 @@ lake-packages/
 .vscode/settings.json
 *.swp
 *~
+
+# Lake lockfile (auto-generated, keep out of version control)
+lake-manifest.json

@@ -84,17 +84,20 @@ deriving Repr, BEq, DecidableEq
 -- EXERCISES
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- EXERCISE 3.1: Define a type class `Area` with method `area : α → Float`.
--- EXERCISE: replace the placeholder method below
+-- Area type class is defined for you — compare with Haskell's `class` syntax.
 class Area (α : Type) where
-  area : α → Float   -- replace with your implementation
+  area : α → Float
 
--- EXERCISE 3.2: Define `inductive Geo` with constructors `circle (r : Float)`
--- and `rect (w h : Float)`, then write an `instance : Area Geo`.
--- EXERCISE: replace the placeholder constructors below
+-- Geo is defined for you as scaffold.
 inductive Geo where
-  | circle : Float → Geo           -- replace with your implementation
-  | rect   : Float → Float → Geo   -- replace with your implementation
+  | circle : Float → Geo
+  | rect   : Float → Float → Geo
+deriving Repr
+
+-- EXERCISE 3.2: Write an instance of Area for Geo.
+--   circle: π × r²   rect: w × h
+-- EXERCISE: fill in the sorry below
+instance : Area Geo := sorry
 
 -- EXERCISE 3.3: Write a generic function `printArea [Area α] (x : α) : IO Unit`.
 -- EXERCISE: fill in the sorry below

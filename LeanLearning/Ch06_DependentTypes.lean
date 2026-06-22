@@ -77,10 +77,14 @@ def seven : Fin 10 := sorry
 -- EXERCISE: fill in the sorry below
 def allFin (n : Nat) : List (Fin n) := sorry
 
--- EXERCISE 6.3: Define a structure `Positive` containing a Nat and a proof
--- that it's greater than 0. Then define `positiveDiv` that divides two
--- Positive values (safe — denominator is provably nonzero).
--- EXERCISE: replace the placeholder fields below
+-- Positive is defined for you — a structure that carries a proof as a field.
+-- The proof field `pos` ensures at the type level that `val > 0`.
 structure Positive where
-  val  : Nat       -- replace with your implementation
-  prop : 0 < val   -- replace with your implementation
+  val : Nat
+  pos : 0 < val
+
+-- EXERCISE 6.3: Define `positiveDiv` that safely divides two Positive values.
+-- Hint: you need to extract val from each, and use pos to satisfy the
+-- division-by-zero proof obligation. Try: `Nat.div p.val q.val`
+-- EXERCISE: fill in the sorry below
+def positiveDiv (p q : Positive) : Nat := sorry

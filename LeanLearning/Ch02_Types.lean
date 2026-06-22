@@ -99,23 +99,29 @@ def moveRight (p : Point) (dx : Float) : Point :=
 -- EXERCISES
 -- ─────────────────────────────────────────────────────────────────────────────
 
--- EXERCISE 2.1: Define `Shape` as an inductive type with constructors:
---   `circle` (takes a Float radius) and `rect` (takes Float width and height).
--- EXERCISE: replace the placeholder constructors below
+-- Shape is defined for you — study how inductive types with constructor
+-- arguments work (compare to Haskell's `data` or Coq's `Inductive`).
 inductive Shape where
-  | circle : Float → Shape      -- replace with your implementation
-  | rect   : Float → Float → Shape  -- replace with your implementation
+  | circle : Float → Shape
+  | rect   : Float → Float → Shape
+deriving Repr
 
--- EXERCISE 2.2: Write `area : Shape → Float` using pattern matching.
+-- EXERCISE 2.1: Write `area : Shape → Float` using pattern matching.
+--   circle: π × r²   (use Float.pi or 3.14159265)
+--   rect:   w × h
 -- EXERCISE: fill in the sorry below
 def area : Shape → Float := sorry
 
--- EXERCISE 2.3: Define a structure `Person` with fields `name : String` and
--- `age : Nat`. Create an instance with your own name and age.
--- EXERCISE: replace the placeholder fields below
+-- Person is defined for you — note how `structure` is like Haskell record syntax
+-- or Coq's `Record`.
 structure Person where
-  name : String    -- replace with your implementation
-  age  : Nat       -- replace with your implementation
+  name : String
+  age  : Nat
+deriving Repr
+
+-- EXERCISE 2.3: Create a `Person` instance with your own name and age.
+-- EXERCISE: fill in the sorry below
+def me : Person := sorry
 
 -- Verify:
 -- #eval area (Shape.circle 5.0)   -- should be ~78.54

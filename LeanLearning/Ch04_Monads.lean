@@ -91,11 +91,12 @@ def safeSecond (xs : List α) : Option α := sorry
 def countdown : Nat → IO Unit := sorry
 
 -- Verify:
-#eval safeHead [1, 2, 3]    -- some 1
-#eval safeHead ([] : List Nat)  -- none
-#eval safeSecond [1, 2, 3]  -- some 2
-#eval countdown 3
--- 3
--- 2
--- 1
--- Go!
+-- Uncomment after filling in the exercises above
+-- #eval safeHead [1, 2, 3]    -- some 1
+-- #eval safeHead ([] : List Nat)  -- none
+-- #eval safeSecond [1, 2, 3]  -- some 2
+-- #eval countdown 3
+-- -- 3
+-- -- 2
+-- -- 1
+-- -- Go!

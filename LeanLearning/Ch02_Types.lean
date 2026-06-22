@@ -126,3 +126,43 @@ def me : Person := sorry
 -- Verify:
 -- #eval area (Shape.circle 5.0)   -- should be ~78.54
 -- #eval area (Shape.rect 3.0 4.0) -- should be 12.0
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- TYPE-DEFINITION EXERCISES
+-- For these, write the inductive/structure from scratch.
+-- Lean4 doesn't allow `sorry` inside type bodies, so stubs are given as
+-- comments — uncomment and fill them in.
+-- ─────────────────────────────────────────────────────────────────────────────
+
+-- EXERCISE 2.4: Define a parameterized binary tree.
+-- In Haskell: `data BTree a = Leaf | Node (BTree a) a (BTree a)`
+-- In Coq:     `Inductive BTree (A : Type) := Leaf | Node (BTree A) A (BTree A).`
+-- Uncomment and complete:
+-- inductive BTree (α : Type) where
+--   | ...
+--   | ...
+-- deriving Repr
+
+-- EXERCISE 2.5: Write `depth : BTree α → Nat` (longest path from root to leaf).
+-- Hint: `Nat.max` takes two Nats and returns the larger.
+-- Uncomment and complete:
+-- def depth : BTree α → Nat
+--   | ...
+
+-- EXERCISE 2.6: Write `size : BTree α → Nat` (total number of nodes).
+-- Uncomment and complete:
+-- def size : BTree α → Nat
+--   | ...
+
+-- Verify (uncomment after filling in):
+-- def exTree : BTree Nat :=
+--   BTree.node (BTree.node BTree.leaf 1 BTree.leaf) 2 (BTree.node BTree.leaf 3 BTree.leaf)
+-- #eval depth exTree   -- should be 2
+-- #eval size exTree    -- should be 3
+
+-- EXERCISE 2.7 (challenge): Define `mirror : BTree α → BTree α` that flips
+-- the tree left-to-right. Then verify `depth (mirror t) = depth t`.
+-- (The verification is just a `#eval` check for now — we'll prove it in Ch05.)
+-- Uncomment and complete:
+-- def mirror : BTree α → BTree α
+--   | ...

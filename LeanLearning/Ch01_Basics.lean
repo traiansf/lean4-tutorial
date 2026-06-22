@@ -42,7 +42,9 @@ def double (n : Nat) : Nat := n * 2
 def add (x y : Nat) : Nat := x + y
 
 #eval add 3 4   -- 7
-#eval (add 3)   -- a partially-applied function (type: Nat → Nat)
+
+-- Partial application works (like Haskell), but #eval can't display functions:
+--   (add 3) : Nat → Nat   -- a partially-applied function waiting for its second arg
 
 -- Anonymous functions use `fun` (same keyword as Coq; `\` in Haskell):
 #eval (fun x => x + 1) 10   -- 11
@@ -147,13 +149,16 @@ def main : IO Unit := do
 -- cursor is on or just after the `sorry`.
 
 -- EXERCISE 1.1: Define `square` that returns n².
+-- EXERCISE: fill in the sorry below
 def square (n : Nat) : Nat := sorry
 
 -- EXERCISE 1.2: Define `max'` returning the larger of two Nat values.
 -- Hint: use `if ... then ... else ...`
+-- EXERCISE: fill in the sorry below
 def max' (a b : Nat) : Nat := sorry
 
 -- EXERCISE 1.3: Define `greet` that performs IO, printing "Hello, <name>!"
+-- EXERCISE: fill in the sorry below
 def greet (name : String) : IO Unit := sorry
 
 -- EXERCISE 1.4: What does `(5 : Nat) - 8` evaluate to? Why?

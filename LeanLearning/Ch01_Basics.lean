@@ -135,7 +135,8 @@ def hello : IO Unit := do
 -- `<-` extracts a value from IO, just like Haskell:
 def askAndGreet : IO Unit := do
   IO.print "Enter your name: "
-  let name ← IO.getLine
+  let stdin ← IO.getStdin
+  let name ← stdin.getLine
   IO.println s!"Hello, {name}!"
 
 -- The program's entry point:
@@ -165,8 +166,8 @@ def greet (name : String) : IO Unit := sorry
 -- Write your answer as a comment, then verify with #eval.
 -- ANSWER:
 
--- Verify your answers (these will show warnings until sorry is filled):
-#eval square 6       -- should be 36
-#eval max' 3 7       -- should be 7
-#eval max' 9 2       -- should be 9
-#eval greet "Lean4"  -- should print: Hello, Lean4!
+-- Verify your answers (uncomment after filling in the exercises above):
+-- #eval square 6       -- should be 36
+-- #eval max' 3 7       -- should be 7
+-- #eval max' 9 2       -- should be 9
+-- #eval greet "Lean4"  -- should print: Hello, Lean4!

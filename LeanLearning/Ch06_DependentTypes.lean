@@ -80,6 +80,7 @@ def allFin (n : Nat) : List (Fin n) := sorry
 -- EXERCISE 6.3: Define a structure `Positive` containing a Nat and a proof
 -- that it's greater than 0. Then define `positiveDiv` that divides two
 -- Positive values (safe — denominator is provably nonzero).
--- EXERCISE: fill in the sorry below
+-- EXERCISE: replace the placeholder fields below
 structure Positive where
-  sorry
+  val  : Nat       -- replace with your implementation
+  prop : 0 < val   -- replace with your implementation

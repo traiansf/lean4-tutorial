@@ -101,9 +101,10 @@ def moveRight (p : Point) (dx : Float) : Point :=
 
 -- EXERCISE 2.1: Define `Shape` as an inductive type with constructors:
 --   `circle` (takes a Float radius) and `rect` (takes Float width and height).
--- EXERCISE: fill in the sorry below
+-- EXERCISE: replace the placeholder constructors below
 inductive Shape where
-  sorry
+  | circle : Float → Shape      -- replace with your implementation
+  | rect   : Float → Float → Shape  -- replace with your implementation
 
 -- EXERCISE 2.2: Write `area : Shape → Float` using pattern matching.
 -- EXERCISE: fill in the sorry below
@@ -111,9 +112,10 @@ def area : Shape → Float := sorry
 
 -- EXERCISE 2.3: Define a structure `Person` with fields `name : String` and
 -- `age : Nat`. Create an instance with your own name and age.
--- EXERCISE: fill in the sorry below
+-- EXERCISE: replace the placeholder fields below
 structure Person where
-  sorry
+  name : String    -- replace with your implementation
+  age  : Nat       -- replace with your implementation
 
 -- Verify:
 -- #eval area (Shape.circle 5.0)   -- should be ~78.54

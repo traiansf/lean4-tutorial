@@ -24,7 +24,8 @@ def printTwice (s : String) : IO Unit := do
 
 -- `<-` extracts values from IO:
 def readAndEcho : IO Unit := do
-  let line ← IO.getLine
+  let stdin ← IO.getStdin
+  let line ← stdin.getLine
   IO.println s!"You typed: {line}"
 
 -- ─────────────────────────────────────────────────────────────────────────────

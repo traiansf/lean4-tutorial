@@ -36,7 +36,7 @@ instance : Describable Nat where
 
 -- Usage — type class constraint with `[Describable α]`:
 def printDescription [Describable α] (x : α) : IO Unit :=
-  IO.println (describe x)
+  IO.println (Describable.describe x)
 
 #eval printDescription Fruit.banana   -- "A yellow banana"
 #eval printDescription (42 : Nat)     -- "The number 42"
@@ -85,15 +85,16 @@ deriving Repr, BEq, DecidableEq
 -- ─────────────────────────────────────────────────────────────────────────────
 
 -- EXERCISE 3.1: Define a type class `Area` with method `area : α → Float`.
--- EXERCISE: fill in the sorry below
+-- EXERCISE: replace the placeholder method below
 class Area (α : Type) where
-  sorry
+  area : α → Float   -- replace with your implementation
 
 -- EXERCISE 3.2: Define `inductive Geo` with constructors `circle (r : Float)`
 -- and `rect (w h : Float)`, then write an `instance : Area Geo`.
--- EXERCISE: fill in the sorry below
+-- EXERCISE: replace the placeholder constructors below
 inductive Geo where
-  sorry
+  | circle : Float → Geo           -- replace with your implementation
+  | rect   : Float → Float → Geo   -- replace with your implementation
 
 -- EXERCISE 3.3: Write a generic function `printArea [Area α] (x : α) : IO Unit`.
 -- EXERCISE: fill in the sorry below

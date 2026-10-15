@@ -110,7 +110,12 @@ deriving Repr
 --   circle: π × r²   (use Float.pi or 3.14159265)
 --   rect:   w × h
 -- EXERCISE: fill in the sorry below
-def area : Shape → Float := sorry
+def area : Shape → Float
+  | Shape.circle x =>
+     let pi := 3.1415926
+     pi * x * x
+  | Shape.rect x y =>
+    x * y
 
 -- Person is defined for you — note how `structure` is like Haskell record syntax
 -- or Coq's `Record`.
@@ -121,11 +126,14 @@ deriving Repr
 
 -- EXERCISE 2.3: Create a `Person` instance with your own name and age.
 -- EXERCISE: fill in the sorry below
-def me : Person := sorry
+def me : Person := {
+  name := "I me mine"
+  age := 9
+}
 
 -- Verify:
--- #eval area (Shape.circle 5.0)   -- should be ~78.54
--- #eval area (Shape.rect 3.0 4.0) -- should be 12.0
+#eval area (Shape.circle 5.0)   -- should be ~78.54
+#eval area (Shape.rect 3.0 4.0) -- should be 12.0
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- TYPE-DEFINITION EXERCISES
@@ -138,31 +146,38 @@ def me : Person := sorry
 -- In Haskell: `data BTree a = Leaf | Node (BTree a) a (BTree a)`
 -- In Coq:     `Inductive BTree (A : Type) := Leaf | Node (BTree A) A (BTree A).`
 -- Uncomment and complete:
--- inductive BTree (α : Type) where
---   | ...
---   | ...
--- deriving Repr
+inductive BTree (α : Type) where
+  | leaf : BTree α
+  | node : BTree α → α → BTree α → BTree α
+deriving Repr
 
 -- EXERCISE 2.5: Write `depth : BTree α → Nat` (longest path from root to leaf).
 -- Hint: `Nat.max` takes two Nats and returns the larger.
 -- Uncomment and complete:
--- def depth : BTree α → Nat
---   | ...
+def depth : BTree α → Nat
+  | BTree.leaf => 0
+  | BTree.node l _ r => Nat.succ (Nat.max (depth l) (depth r))
+
 
 -- EXERCISE 2.6: Write `size : BTree α → Nat` (total number of nodes).
 -- Uncomment and complete:
--- def size : BTree α → Nat
---   | ...
+def size : BTree α → Nat
+  | BTree.leaf => 0
+  | BTree.node l _ r => Nat.succ (size l + size r)
 
 -- Verify (uncomment after filling in):
--- def exTree : BTree Nat :=
---   BTree.node (BTree.node BTree.leaf 1 BTree.leaf) 2 (BTree.node BTree.leaf 3 BTree.leaf)
--- #eval depth exTree   -- should be 2
--- #eval size exTree    -- should be 3
+def exTree : BTree Nat :=
+  BTree.node (BTree.node BTree.leaf 1 BTree.leaf) 2 (BTree.node BTree.leaf 3 BTree.leaf)
+#eval depth exTree   -- should be 2
+#eval size exTree    -- should be 3
 
 -- EXERCISE 2.7 (challenge): Define `mirror : BTree α → BTree α` that flips
 -- the tree left-to-right. Then verify `depth (mirror t) = depth t`.
 -- (The verification is just a `#eval` check for now — we'll prove it in Ch05.)
 -- Uncomment and complete:
--- def mirror : BTree α → BTree α
---   | ...
+def mirror : BTree α → BTree α
+  | BTree.leaf => BTree.leaf
+  | BTree.node l v r => BTree.node (mirror r) v (mirror l)
+
+#eval mirror exTree
+#eval depth (mirror exTree) == depth exTree

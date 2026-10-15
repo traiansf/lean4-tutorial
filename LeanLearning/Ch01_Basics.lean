@@ -151,23 +151,29 @@ def main : IO Unit := do
 
 -- EXERCISE 1.1: Define `square` that returns n².
 -- EXERCISE: fill in the sorry below
-def square (n : Nat) : Nat := sorry
+def square (n : Nat) : Nat := n * n
 
 -- EXERCISE 1.2: Define `max'` returning the larger of two Nat values.
 -- Hint: use `if ... then ... else ...`
 -- EXERCISE: fill in the sorry below
-def max' (a b : Nat) : Nat := sorry
+def max' (a b : Nat) : Nat :=
+  if a > b then a else b
 
 -- EXERCISE 1.3: Define `greet` that performs IO, printing "Hello, <name>!"
 -- EXERCISE: fill in the sorry below
-def greet (name : String) : IO Unit := sorry
+def greet (name : String) : IO Unit :=
+  IO.println s!"Hello, {name}!"
 
 -- EXERCISE 1.4: What does `(5 : Nat) - 8` evaluate to? Why?
 -- Write your answer as a comment, then verify with #eval.
--- ANSWER:
+-- ANSWER: 0
 
 -- Verify your answers (uncomment after filling in the exercises above):
--- #eval square 6       -- should be 36
--- #eval max' 3 7       -- should be 7
--- #eval max' 9 2       -- should be 9
--- #eval greet "Lean4"  -- should print: Hello, Lean4!
+#eval square 6       -- should be 36
+#eval max' 3 7       -- should be 7
+#eval max' 9 2       -- should be 9
+#eval greet "Lean4"  -- should print: Hello, Lean4!
+
+def fact (n : Nat) : Nat := if n = 0 then 1 else n * fact (n - 1)
+
+#eval fact 4
